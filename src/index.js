@@ -9,7 +9,6 @@ const objs = {};
 
 function seckill(Times,status,inter){
     if(!inspect(Times,"isA")) throw Error("请输入正确的秒杀参数，比如[0,'3:30','6:12',8,20]!")
-    Times = Times.sort((a,b) => a-b);
      $.ajax({
         type:"GET",
         dataType:"jsonp",
@@ -84,9 +83,11 @@ function timing(start){
     return function(){
         let e = new Date();
         let diff = e - n;
+        console.log(diff);
         diff = diff > 1900 ? 1000 : diff;
         start += diff;
         n = e;
+        console.log(new Date(start));
         return start;
     }
 
@@ -209,7 +210,6 @@ function generate(T,status){
        l = T.length;
    let group = [];
    let hour = new Date(realTime);
-   console.log(hour);
    while(count <5){
     if(compare(hour,chuliTime(process(T,i,l),"num")) && compare(chuliTime(process(T,i+1,l),"num"),hour)){
          let obj = {},
