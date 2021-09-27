@@ -84,7 +84,7 @@ function timing(start){
     return function(){
         let e = new Date();
         let diff = e - n;
-        diff = diff > 1500 ? 1000 : diff;
+        diff = diff > 1900 ? 1000 : diff;
         start += diff;
         n = e;
         return start;
@@ -117,8 +117,8 @@ function renderDom(data){
             <div class="processwrap"><i class="processwraps">' + datas[i]["subName"] +'</i> </div>\
             <div class="timecount"> <b class="txt">' + datas[i]["subsbr"] +'</b> \
                 <b class="time">' + datas[i]["timeSbr"] +'\
-                     <i class="hour">01</i>:<i class="minutes">17</i>:<i\
-                        class="seconds">30</i></b> </div>\
+                     <i class="hour">0</i>:<i class="minutes">0</i>:<i\
+                        class="seconds">0</i></b> </div>\
         </div>\
     </a> </li>';
     }
@@ -150,7 +150,7 @@ function render(t){
             S[i].innerHTML = stringFormat(timeO[2]);
         }else{
             clearInterval(timerSign);
-            target.style.display = "";
+            target.css("display","");
         } 
 
     }
@@ -244,4 +244,4 @@ function eventHandle(){
       });
 }
 
-seckill([0,6,8,10,12,14,16,20],["秒杀结束","进行中","即将开始"]);
+seckill([0,6,8,10,12,14,16,21,22],["秒杀结束","进行中","即将开始"]);
