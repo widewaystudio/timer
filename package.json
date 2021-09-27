@@ -1,0 +1,50 @@
+{
+  "name": "timer",
+  "version": "1.0.0",
+  "description": "精准计时器",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^10.3.5",
+    "css-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "html-withimg-loader": "^0.1.16",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.1",
+    "mini-css-extract-plugin": "^2.3.0",
+    "postcss-loader": "^6.1.1",
+    "sass": "^1.39.2",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sev": "webpack-dev-server --color --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/widewaystudio/timer.git"
+  },
+  "author": "widewaystudio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/widewaystudio/timer/issues"
+  },
+  "homepage": "https://github.com/widewaystudio/timer#readme",
+  "browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ],
+  "keywords": [
+    "javascript",
+    "css",
+    "html"
+  ]
+}

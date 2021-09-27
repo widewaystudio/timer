@@ -1,0 +1,95 @@
+/*!**************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/main.less ***!
+  \**************************************************************************************************************************************************/
+body, html, ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+}
+
+i {
+  font-style: normal;
+}
+
+ul, li {
+  display: block;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1250px;
+  min-height: 60px;
+  border: 1px solid red;
+  overflow: hidden;
+}
+.container .timeline_item {
+  line-height: 60px;
+  text-align: center;
+  font-size: 18px;
+  float: left;
+}
+.container .timeline_item .link {
+  width: 240px;
+  height: 60px;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: width 0.2s ease;
+  transition: width 0.2s ease;
+}
+.container .timeline_item .link .link_skew_timewrap, .container .timeline_item .link .processwrap, .container .timeline_item .link .timecount {
+  display: inline-block;
+  overflow: hidden;
+}
+.container .timeline_item .link .processwraps {
+  display: inline-block;
+  font-size: 12px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 14px;
+  border-radius: 22px;
+  border: 1px solid #666;
+  height: 26px;
+  line-height: 25px;
+}
+.container .timeline_item .link .link_skew_timewrap {
+  margin-right: 10px;
+  font-size: 20px;
+}
+.container .timeline_item .link .timecount {
+  display: none;
+}
+.container .selected .link {
+  width: 290px;
+}
+.container .selected .link .processwrap {
+  display: none;
+}
+.container .selected .link .link_skew {
+  background-color: #e01222;
+  color: #fff;
+}
+.container .selected .link .timecount {
+  overflow: hidden;
+  display: inline-block;
+  line-height: 60px;
+  height: 60px;
+}
+.container .selected .link .timecount b {
+  line-height: 1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  font-size: 14px;
+}
+.container .selected .link .timecount .txt {
+  margin-top: 15px;
+}
+.container .selected .link .timecount .time {
+  margin-top: 5px;
+}
