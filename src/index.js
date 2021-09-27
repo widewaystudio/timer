@@ -83,11 +83,11 @@ function timing(start){
     return function(){
         let e = new Date();
         let diff = e - n;
-        console.log(diff);
-        diff = diff > 1900 ? 1000 : diff;
+        // console.log(diff);
+        // diff = diff > 1900 ? 1000 : diff;
         start += diff;
         n = e;
-        console.log(new Date(start));
+        // console.log(new Date(start));
         return start;
     }
 
