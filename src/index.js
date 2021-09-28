@@ -114,7 +114,6 @@ function renderDom(data){
     let datas = data.group,
         l = datas.length,
         temps = '';
-        console.log(datas);
     for(let i = 0; i < l; i++){
         let cla = i === 0 ? "selected" : "";
         temps += '<li class="timeline_item '+ cla +'"> \
@@ -125,8 +124,8 @@ function renderDom(data){
             <div class="processwrap"><i class="processwraps">' + datas[i]["subName"] +'</i> </div>\
             <div class="timecount"> <b class="txt">' + datas[i]["subsbr"] +'</b> \
                 <b class="time">' + datas[i]["timeSbr"] +'\
-                     <i class="hour">0</i>:<i class="minutes">0</i>:<i\
-                        class="seconds">0</i></b> </div>\
+                     <i class="hour">00</i>:<i class="minutes">00</i>:<i\
+                        class="seconds">00</i></b> </div>\
         </div>\
     </a> </li>';
     }
@@ -159,7 +158,7 @@ function render(t,Arr1,Arr2){
   //console.log(t);
 
 
- let target = $(".mask");
+ let target = $(".mark");
  let datas = objs.group;
  let dhandle = document;
  let H = dhandle.getElementsByClassName("hour"),
@@ -167,7 +166,6 @@ function render(t,Arr1,Arr2){
      S = dhandle.getElementsByClassName("seconds");
     for(let i = 0; i < datas.length; i++){
         let start = 0,
-            end = 0,
             timeO = null;
         start = datas[i]["state"] === 2 ? datas[i]["startTime"] : datas[i]["endTime"];
         timeO = timeDiff(t,start);
@@ -177,8 +175,9 @@ function render(t,Arr1,Arr2){
             Arr2[i](timeO[1]) && ( M[i].innerHTML = stringFormat(timeO[1]));                             
             S[i].innerHTML = stringFormat(timeO[2]);
         }else{
-            clearInterval(timerSign);
             target.addClass("show");
+            clearInterval(timerSign);
+           
         } 
 
     }
@@ -202,31 +201,40 @@ function timeHandle(Times,inter,status){
 
 function stringFillter(n){
     let reg = /[^0-9:]*/g;
-        let temp = '';
      return n.replace(reg,"");
 }
 
 function chuliTime(n,types){
-    n = typeof n === "string" ? n : "" + n;
+    n = typeof n === "string" ? n : "" + n;   
     if(n.split(":").length > 1){
        n = stringFillter(n);
     }    
-    
     let p = n.split(":");
-
-    let h = p[0] ? +p[0] : 0,
+     let h = p[0] ? +p[0] : 0,
         m = p[1] ? +p[1] : 0,
-        s = p[2] ? +p[2] : 0;    
+        s = p[2] ? +p[2] : 0;   
     let T = new Date(realTime);
     T.setHours(h);
     T.setMinutes(m);
-    T.setSeconds(s);
-    
+    T.setSeconds(s);    
     return types === "num" ? T :initialFormat(T);
 }
 
 function process(t,i,l){
-    return t[i % l] + Math.floor(i / l) * 24;
+    let tmp = '',
+        ts = t [ i % l],
+        yans =  Math.floor(i / l) * 24;
+    if(typeof ts === "string"){
+       tmp = stringFillter(ts);
+       let p = tmp.split(":");
+       let h = p[0] ? (+p[0]) + yans : 0,
+        m = p[1] ? ":" + (+p[1]) : "",
+        s = p[2] ? ":" + (+p[2]) : "";  
+        tmp = h + m + s;
+    }else if(typeof ts === "number"){
+         tmp = ts + yans;
+    }
+    return tmp;
 }
 
 
@@ -271,4 +279,4 @@ function eventHandle(){
       });
 }
 
-seckill([0,6,8,10,12,14,16,21,22],["秒杀结束","进行中","即将开始"]);
+seckill([0,6,8,10,12,14,'17:46:3',21,22],["秒杀结束","进行中","即将开始"]);
