@@ -83,20 +83,26 @@ function timing(start){
     return function(){
         let e = new Date();
         let diff = e - n;
-        // console.log(diff);
         // diff = diff > 1900 ? 1000 : diff;
         start += diff;
         n = e;
-        // console.log(new Date(start));
         return start;
     }
 
 }
 function Time(t){
-
+   let timeFlg = onceAct();
+   let HFlg = [],
+       MFlg = [];
+       for(let i = 0; i < 5; i ++){
+           HFlg.push(timeFlg(0));
+           MFlg.push(timeFlg(0));
+       }
+     
+     
    timerSign = setInterval(function(){
-        // console.log(typeof t());
-        render(t());
+         // console.log(typeof t());
+        render(t(),HFlg,MFlg);
     },1000);
 
 }
@@ -108,6 +114,7 @@ function renderDom(data){
     let datas = data.group,
         l = datas.length,
         temps = '';
+        console.log(datas);
     for(let i = 0; i < l; i++){
         let cla = i === 0 ? "selected" : "";
         temps += '<li class="timeline_item '+ cla +'"> \
@@ -127,9 +134,29 @@ function renderDom(data){
     $(".timeline_list").html(temps);
 
 }
+// 将检测数据是否出现变化
+function onceAct(){
+    let obj = {},
+        count = 0;
+    return function(old) {
+        let times = "s" + ++count;
+        obj[times] = old;      
+        return function(newValue){      
+            if(obj[times] === newValue){
+                return false;
+            }else{                
+                obj[times] = newValue;
+                return true;
+            }
+        }
 
-function render(t){
-//   console.log(t);
+    }
+
+}
+
+
+function render(t,Arr1,Arr2){
+  //console.log(t);
 
 
  let target = $(".mask");
@@ -146,12 +173,12 @@ function render(t){
         timeO = timeDiff(t,start);
        
         if(timeO){
-            H[i].innerHTML = stringFormat(timeO[0]);
-            M[i].innerHTML = stringFormat(timeO[1]);
+            Arr1[i](timeO[0]) && (H[i].innerHTML = stringFormat(timeO[0]));                
+            Arr2[i](timeO[1]) && ( M[i].innerHTML = stringFormat(timeO[1]));                             
             S[i].innerHTML = stringFormat(timeO[2]);
         }else{
             clearInterval(timerSign);
-            target.css("display","");
+            target.addClass("show");
         } 
 
     }
@@ -220,7 +247,7 @@ function generate(T,status){
          obj.state = count == 0 ? 1 : 2;
          obj.subName = status[obj.state];
          obj.subsbr = tempstr[obj.state];
-         obj.timeSbr = "距" + status[0].slice(-2);
+         obj.timeSbr = count== 0 ? "距结束" : "距开始";
          obj.displayTime = temps + (obj.startTime).replace(/.* (\d+:\d+).*/g,($,$1) => $1);
          obj.endTime = chuliTime(process(T,index + 1,l))
         group.push(obj);

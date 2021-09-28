@@ -143,3 +143,7 @@ ul, li {
   color: #fff;
   margin: 5px auto 30px;
 }
+
+.show {
+  display: block;
+}
